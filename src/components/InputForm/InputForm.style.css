@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+.inputform-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.inputform-top h1{
+  font-weight: 900;
+  color: #222222;
+}
+
+.inputform-bottom{
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+}
+
+.inputform-bottom-left{
+  width: 300px;
+  padding-right: 25px;
+}
+
+.inputform-bottom-left h4{
+  font-weight: 700;
+  color: #e62b1e;
+  margin: 0;
+  border-bottom: 1px solid rgba(117, 117, 117, .3) ;
+}
+
+.inputform-bottom-right{
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid rgba(117, 117, 117, .2) ;
+  padding-left: 25px;
+}
+
+.inputform-bottom-right h2{
+  font-weight: 200;
+  font-size: 1.9rem;
+}
+
+.inputform-form{
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+}
+
+.field{
+  display: flex;
+  flex-direction: column;
+}
+
+.field label{
+  font-weight: 700;
+  color: #333333;
+  padding-bottom: 5px;
+  font-size: 0.8rem;
+}
+
+.field-duo{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+input{
+  padding: 10px 5px;
+  font-family: 'Inter', sans-serif;
+}
+
+button{
+  display: flex;
+  background-color: #d91e18;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 30px;
+  font-weight: 700;
+  transition: ease 2s;
+}
+
+button:hover{
+  background-color: #861610;
+}

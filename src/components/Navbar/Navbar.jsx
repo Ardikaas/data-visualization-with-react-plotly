@@ -42,7 +42,7 @@ const Navbar = () => {
           </a>
         </div>
         <div className="join">
-          <a href="*" target="_blank">
+          <a href="/input" target="">
             JOIN TED
           </a>
         </div>

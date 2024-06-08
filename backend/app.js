@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const TedController = require("./controller/tedController");
+const cors = require("cors");
 require("dotenv").config();
 
 const app = express();
@@ -13,6 +14,7 @@ mongoose
   .then((result) => console.log("database connected succesfully"))
   .catch((err) => console.log(err));
 
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 

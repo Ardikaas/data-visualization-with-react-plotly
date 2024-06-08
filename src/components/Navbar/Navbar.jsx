@@ -5,7 +5,7 @@ const Navbar = () => {
   return (
     <div className="navbar-container">
       <div className="navbar-left">
-        <a href="https://www.ted.com/">
+        <a href="/">
           <img src={logo} alt="" />
           <h4>Ideas change everything</h4>
         </a>

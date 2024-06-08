@@ -3,15 +3,23 @@
 .inputform-container{
   display: flex;
   flex-direction: column;
-  align-items: center;
+  }
+
+.inputform-top{
+  padding: 50px 20px;
+  background-image: linear-gradient(0deg, #f0f0f0, #f6f6f6);
 }
 
 .inputform-top h1{
   font-weight: 900;
   color: #222222;
+  text-align: center;
+  font-size: 2.6rem;
+  margin: 0;
 }
 
 .inputform-bottom{
+  padding: 20px 150px;
   display: flex;
   flex-direction: row;
   align-items: start;

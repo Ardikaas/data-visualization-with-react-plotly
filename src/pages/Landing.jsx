@@ -1,3 +1,4 @@
+import BarPlot from "../components/BarPlot/BarPlot";
 import Footer from "../components/Footer/Footer";
 import Navbar from "../components/Navbar/Navbar";
 import Warning from "../components/Warning/Warning";
@@ -6,6 +7,7 @@ const Landing = () => {
   return (
     <div>
       <Navbar />
+      <BarPlot />
       <Warning />
       <Footer />
     </div>

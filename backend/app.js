@@ -26,6 +26,10 @@ app.get("/all", async (req, res) => {
   TedController.getAllData(req, res);
 });
 
+app.get("/totalviews", async (req, res) => {
+  TedController.getTotalViewsYear(req, res);
+});
+
 app.post("/input", async (req, res) => {
   TedController.createData(req, res);
 });

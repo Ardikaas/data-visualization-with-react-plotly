@@ -4,6 +4,8 @@ const TedController = {
   getAllData,
   createData,
   getTotalViewsYear,
+  getTotalLikesYear,
+  deleteData,
 };
 
 async function getAllData(req, res) {
@@ -82,6 +84,69 @@ async function getTotalViewsYear(req, res) {
         message: "Success",
       },
       data: result,
+    });
+  } catch (error) {
+    res.status(304).json({
+      status: {
+        code: 304,
+        message: error,
+      },
+    });
+  }
+}
+
+async function getTotalLikesYear(req, res) {
+  try {
+    const data = await Ted.find();
+    const likesYear = {};
+
+    data.forEach((item) => {
+      const year = item.date.split(" ")[1];
+      if (!likesYear[year]) {
+        likesYear[year] = 0;
+      }
+      likesYear[year] += item.likes;
+    });
+
+    const result = {
+      year: Object.keys(likesYear).map(Number),
+      totallikes: Object.values(likesYear),
+    };
+
+    res.status(200).json({
+      status: {
+        code: 200,
+        message: "Success",
+      },
+      data: result,
+    });
+  } catch (error) {
+    res.status(304).json({
+      status: {
+        code: 304,
+        message: error,
+      },
+    });
+  }
+}
+
+async function deleteData(req, res) {
+  try {
+    const { title } = req.body;
+    const data = await Ted.findOneAndDelete({ title });
+    if (!data) {
+      return res.status(404).json({
+        status: {
+          code: 404,
+          message: `cannot find any date with title "${title}"`,
+        },
+      });
+    }
+    res.status(200).json({
+      status: {
+        code: 200,
+        message: "Data successfully deleted",
+      },
     });
   } catch (error) {
     res.status(304).json({

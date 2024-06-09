@@ -30,8 +30,16 @@ app.get("/totalviews", async (req, res) => {
   TedController.getTotalViewsYear(req, res);
 });
 
+app.get("/totallikes", async (req, res) => {
+  TedController.getTotalLikesYear(req, res);
+});
+
 app.post("/input", async (req, res) => {
   TedController.createData(req, res);
+});
+
+app.delete("/delete", async (req, res) => {
+  TedController.deleteData(req, res);
 });
 
 app.listen(port, () => {

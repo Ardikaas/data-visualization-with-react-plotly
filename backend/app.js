@@ -26,12 +26,20 @@ app.get("/all", async (req, res) => {
   TedController.getAllData(req, res);
 });
 
+app.get("/topviews", async (req, res) => {
+  TedController.getTopFourViews(req, res);
+});
+
 app.get("/totalviews", async (req, res) => {
   TedController.getTotalViewsYear(req, res);
 });
 
 app.get("/totallikes", async (req, res) => {
   TedController.getTotalLikesYear(req, res);
+});
+
+app.get("/monthlyviews/:year", async (req, res) => {
+  TedController.getMonthlyViews(req, res);
 });
 
 app.post("/input", async (req, res) => {

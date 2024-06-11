@@ -1,15 +1,15 @@
 import Plot from "react-plotly.js";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import "./BarPlot.style.css";
+import "./ScatterPlot.style.css";
 
-const BarPlot = () => {
+const ScatterPlot = () => {
   const navigate = useNavigate();
   const [plotData, setPlotData] = useState({});
 
   const fetchData = async () => {
     try {
-      const response = await fetch("http://localhost:8080/monthlyviews/2024");
+      const response = await fetch("http://localhost:8080/totalviews");
       if (!response.ok) {
         throw new Error("Filed to fetch data");
       }
@@ -38,13 +38,15 @@ const BarPlot = () => {
   };
 
   return (
-    <div className="barplot-container">
+    <div className="scatterplot-container">
       <Plot
         data={[
           {
-            x: plotData.month || [],
-            y: plotData.views || [],
-            type: "bar",
+            x: plotData.year || [],
+            y: plotData.totalviews || [],
+            fill: "tozeroy",
+            type: "scatter",
+            mode: "lines+markers",
             marker: { color: "#d91e18" },
           },
         ]}
@@ -65,4 +67,4 @@ const BarPlot = () => {
   );
 };
 
-export default BarPlot;
+export default ScatterPlot;

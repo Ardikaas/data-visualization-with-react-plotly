@@ -6,6 +6,8 @@ const TedController = {
   getTotalViewsYear,
   getTotalLikesYear,
   deleteData,
+  getTopFourViews,
+  getMonthlyViews,
 };
 
 async function getAllData(req, res) {
@@ -95,6 +97,58 @@ async function getTotalViewsYear(req, res) {
   }
 }
 
+async function getMonthlyViews(req, res) {
+  try {
+    const { year } = req.params;
+
+    const data = await Ted.find();
+    const viewsPerMonth = Array(12).fill(0);
+
+    data.forEach((item) => {
+      const [month, itemYear] = item.date.split(" ");
+
+      if (itemYear === year) {
+        const monthIndex = new Date(`${month} 1, ${itemYear}`).getMonth();
+        viewsPerMonth[monthIndex] += item.views;
+      }
+    });
+
+    const months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+    const result = {
+      month: months,
+      views: viewsPerMonth,
+    };
+
+    res.status(200).json({
+      status: {
+        code: 200,
+        message: "Success",
+      },
+      data: result,
+    });
+  } catch (error) {
+    res.status(304).json({
+      status: {
+        code: 304,
+        message: error,
+      },
+    });
+  }
+}
+
 async function getTotalLikesYear(req, res) {
   try {
     const data = await Ted.find();
@@ -152,6 +206,44 @@ async function deleteData(req, res) {
     res.status(304).json({
       status: {
         code: 304,
+        message: error,
+      },
+    });
+  }
+}
+
+async function getTopFourViews(req, res) {
+  try {
+    const data = await Ted.find().sort({ views: -1 }).limit(4);
+
+    function formatViews(views) {
+      if (views >= 1000000000) {
+        return (views / 1000000000).toFixed(1) + "b";
+      } else if (views >= 1000000) {
+        return (views / 1000000).toFixed(1) + "m";
+      } else if (views >= 1000) {
+        return (views / 1000).toFixed(1) + "k";
+      } else {
+        return views.toString();
+      }
+    }
+
+    const formattedData = data.map((item) => ({
+      ...item.toObject(),
+      views: formatViews(item.views),
+    }));
+
+    res.status(200).json({
+      status: {
+        code: 200,
+        message: "Success",
+      },
+      data: formattedData,
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: {
+        code: 500,
         message: error,
       },
     });

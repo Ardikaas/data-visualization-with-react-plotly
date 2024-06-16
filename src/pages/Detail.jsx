@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar/Navbar";
 import Warning from "../components/Warning/Warning";
 import Dashboard from "../components/Dashboard/Dashboard";
 
-const Landing = () => {
+const Detail = () => {
   return (
     <div>
       <Navbar />
@@ -14,4 +14,4 @@ const Landing = () => {
   );
 };
 
-export default Landing;
+export default Detail;

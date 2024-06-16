@@ -1,0 +1,74 @@
+.mostviewcard-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mostviewcard{
+  background-color: #ffffff;
+  border: 2px solid rgba(117, 117, 117, 20%);
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.mostviewcard-title{
+  border-bottom: 2px solid rgba(117, 117, 117, 20%);
+}
+
+.mostviewcard-title h4{
+  margin: 0;
+}
+
+.mostviewcard-text-view{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+  padding-top: 8px;
+}
+
+.mostviewcard-text-view img{
+  width: 15px;
+}
+
+.mostviewcard-img img{
+  width: 100px;
+  border: 1px solid rgba(117, 117, 117, 20%);
+  border-radius: 5px;
+}
+
+.mostviewcard-label-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding-top: 15px;
+}
+
+.mostviewcard-label{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+  border-radius: 5px;
+  padding: 5px 8px;
+  background-color: #f6f6f6;
+  box-shadow:  8px 8px 18px #c0c0c0, -8px -8px 18px #ffffff;
+}
+
+.mostviewcard-text h5{
+  margin: 0;
+  font-weight: 400;
+  font-size: 0.8rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 215px;
+}
+
+.mostviewcard-text h6{
+  margin: 0;
+  font-weight: 400;
+  font-size: 0.6rem;
+}
+

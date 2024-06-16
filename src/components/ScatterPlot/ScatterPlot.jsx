@@ -39,30 +39,50 @@ const ScatterPlot = () => {
 
   return (
     <div className="scatterplot-container">
-      <Plot
-        data={[
-          {
-            x: plotData.year || [],
-            y: plotData.totalviews || [],
-            fill: "tozeroy",
-            type: "scatter",
-            mode: "lines+markers",
-            marker: { color: "#d91e18" },
-          },
-        ]}
-        layout={{
-          width: 1000,
-          height: 500,
-          title: "A Fancy Plot",
-          plot_bgcolor: "#f6f6f6",
-          paper_bgcolor: "#f6f6f6",
-          xaxis: {
-            tickformat: "d",
-          },
-        }}
-        config={{ displayModeBar: false }} // Sembunyikan menu konteks Plotly
-        onClick={handleClick} // Panggil fungsi handleClick ketika marker diklik
-      />
+      <div className="scatterplot-title">
+        <h4>Views Analytics</h4>
+      </div>
+      <div className="scatterplot-graphic">
+        <Plot
+          data={[
+            {
+              x: plotData.year || [],
+              y: plotData.totalviews || [],
+              fill: "tozeroy",
+              type: "scatter",
+              mode: "lines+markers",
+              marker: { color: "#d91e18" },
+            },
+          ]}
+          layout={{
+            width: 700,
+            height: 311,
+            plot_bgcolor: "#ffffff",
+            paper_bgcolor: "#ffffff",
+            xaxis: {
+              tickformat: "d",
+            },
+            yaxis: {
+              title: {
+                text: "View",
+                font: {
+                  family: "Inter, sans-serif",
+                  size: 12,
+                  color: "#000000",
+                },
+              },
+            },
+            margin: {
+              t: 0,
+              l: 50,
+              r: 40,
+              b: 55,
+            },
+          }}
+          config={{ displayModeBar: false }} // Sembunyikan menu konteks Plotly
+          onClick={handleClick} // Panggil fungsi handleClick ketika marker diklik
+        />
+      </div>
     </div>
   );
 };

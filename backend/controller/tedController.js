@@ -8,6 +8,7 @@ const TedController = {
   deleteData,
   getTopFourViews,
   getMonthlyViews,
+  getMonthlyLikes,
 };
 
 async function getAllData(req, res) {
@@ -129,7 +130,59 @@ async function getMonthlyViews(req, res) {
     ];
     const result = {
       month: months,
-      views: viewsPerMonth,
+      y: viewsPerMonth,
+    };
+
+    res.status(200).json({
+      status: {
+        code: 200,
+        message: "Success",
+      },
+      data: result,
+    });
+  } catch (error) {
+    res.status(304).json({
+      status: {
+        code: 304,
+        message: error,
+      },
+    });
+  }
+}
+
+async function getMonthlyLikes(req, res) {
+  try {
+    const { year } = req.params;
+
+    const data = await Ted.find();
+    const likesPerMonth = Array(12).fill(0);
+
+    data.forEach((item) => {
+      const [month, itemYear] = item.date.split(" ");
+
+      if (itemYear === year) {
+        const monthIndex = new Date(`${month} 1, ${itemYear}`).getMonth();
+        likesPerMonth[monthIndex] += item.likes;
+      }
+    });
+
+    const months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+    const result = {
+      month: months,
+      y: likesPerMonth,
     };
 
     res.status(200).json({

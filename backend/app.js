@@ -42,6 +42,10 @@ app.get("/monthlyviews/:year", async (req, res) => {
   TedController.getMonthlyViews(req, res);
 });
 
+app.get("/monthlylikes/:year", async (req, res) => {
+  TedController.getMonthlyLikes(req, res);
+});
+
 app.post("/input", async (req, res) => {
   TedController.createData(req, res);
 });

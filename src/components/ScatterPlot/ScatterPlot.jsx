@@ -61,10 +61,18 @@ const ScatterPlot = () => {
             paper_bgcolor: "#ffffff",
             xaxis: {
               tickformat: "d",
+              title: {
+                text: "Year",
+                font: {
+                  family: "Inter, sans-serif",
+                  size: 12,
+                  color: "#000000",
+                },
+              },
             },
             yaxis: {
               title: {
-                text: "View",
+                text: "Views",
                 font: {
                   family: "Inter, sans-serif",
                   size: 12,

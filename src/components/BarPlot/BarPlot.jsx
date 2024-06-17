@@ -50,7 +50,7 @@ const BarPlot = (props) => {
           data={[
             {
               x: plotData.month || [],
-              y: plotData.views || [],
+              y: plotData.y || [],
               type: "bar",
               marker: { color: "#d91e18" },
             },
@@ -65,7 +65,7 @@ const BarPlot = (props) => {
             },
             yaxis: {
               title: {
-                text: "View",
+                text: props.yaxis,
                 font: {
                   family: "Inter, sans-serif",
                   size: 12,

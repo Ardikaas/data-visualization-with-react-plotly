@@ -18,13 +18,15 @@ const Dashboard = () => {
             width={width}
             height={height}
             title={"View Monthly"}
+            yaxis={"Views"}
             url={`http://localhost:8080/monthlyviews/${currentYear}`}
           />
           <BarPlot
             width={width}
             height={height}
             title={"Like Monthly"}
-            url={`http://localhost:8080/monthlyviews/${currentYear}`}
+            yaxis={"Likes"}
+            url={`http://localhost:8080/monthlylikes/${currentYear}`}
           />
         </div>
         <div className="dashboard-right-bottom">

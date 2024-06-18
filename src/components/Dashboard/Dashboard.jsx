@@ -20,6 +20,7 @@ const Dashboard = () => {
             title={"View Monthly"}
             yaxis={"Views"}
             url={`http://localhost:8080/monthlyviews/${currentYear}`}
+            enableClick={false}
           />
           <BarPlot
             width={width}
@@ -27,6 +28,7 @@ const Dashboard = () => {
             title={"Like Monthly"}
             yaxis={"Likes"}
             url={`http://localhost:8080/monthlylikes/${currentYear}`}
+            enableClick={false}
           />
         </div>
         <div className="dashboard-right-bottom">

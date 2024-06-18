@@ -32,6 +32,7 @@ const BarPlot = (props) => {
   }, [fetchData]);
 
   const handleClick = (event) => {
+    if (!props.enableClick) return;
     // Di sini Anda dapat menentukan logika untuk menentukan URL tujuan berdasarkan marker yang diklik
     const markerValue = event.points[0].x; // Contoh: Ambil nilai x dari marker yang diklik
     const url = `/detail/${year}/${markerValue}`; // Contoh: Buat URL tujuan dengan nilai x sebagai bagian dari URL
@@ -81,7 +82,7 @@ const BarPlot = (props) => {
             },
           }}
           config={{ displayModeBar: false }} // Sembunyikan menu konteks Plotly
-          onClick={handleClick} // Panggil fungsi handleClick ketika marker diklik
+          onClick={props.enableClick ? handleClick : undefined} // Panggil fungsi handleClick ketika marker diklik
         />
       </div>
     </div>

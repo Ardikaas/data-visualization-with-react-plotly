@@ -1,0 +1,22 @@
+.piechart-container{
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  padding: 20px;
+  border: 2px solid rgba(117, 117, 117, 20%);
+  border-radius: 5px;
+  background-color: #ffffff;
+}
+
+.piechart-title h4{
+  margin: 0;
+  padding-bottom: 2.5px;
+}
+
+.piechart-title{
+  border-bottom: 2px solid rgba(117, 117, 117, 20%);
+}
+
+.piechart-graphic{
+  padding-top: 15px;
+}

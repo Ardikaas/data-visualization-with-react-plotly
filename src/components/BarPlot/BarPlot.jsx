@@ -1,10 +1,8 @@
 import Plot from "react-plotly.js";
 import { useState, useEffect, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
 import "./BarPlot.style.css";
 
 const BarPlot = (props) => {
-  const navigate = useNavigate();
   const [plotData, setPlotData] = useState({});
   const propsYear = props.url.match(/(\d{4})$/);
   const year = propsYear ? propsYear[0] : "unknown";
@@ -33,12 +31,11 @@ const BarPlot = (props) => {
 
   const handleClick = (event) => {
     if (!props.enableClick) return;
-    // Di sini Anda dapat menentukan logika untuk menentukan URL tujuan berdasarkan marker yang diklik
     const markerValue = event.points[0].x; // Contoh: Ambil nilai x dari marker yang diklik
-    const url = `/detail/${year}/${markerValue}`; // Contoh: Buat URL tujuan dengan nilai x sebagai bagian dari URL
 
-    // Navigasi ke halaman baru menggunakan objek history
-    navigate(url);
+    if (props.onBarClick) {
+      props.onBarClick(markerValue, year); // Pass the month and year to the handler
+    }
   };
 
   return (

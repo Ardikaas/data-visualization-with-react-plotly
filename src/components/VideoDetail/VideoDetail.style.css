@@ -40,13 +40,13 @@
   text-align: left;
   font-weight: 600;
   margin: 0;
-  max-width: 246px;
+  width: 246px;
 }
 
 .videodetail-text-top h6{
   font-weight: 400;
   margin: 0;
-  max-width: 246px;
+  width: 246px;
   color: black;
   opacity: 50%;
 }

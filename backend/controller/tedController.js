@@ -9,6 +9,8 @@ const TedController = {
   getTopFourViews,
   getMonthlyViews,
   getMonthlyLikes,
+  getMonthlyVideos,
+  getVideoDetail,
 };
 
 async function getAllData(req, res) {
@@ -254,6 +256,75 @@ async function deleteData(req, res) {
         code: 200,
         message: "Data successfully deleted",
       },
+    });
+  } catch (error) {
+    res.status(304).json({
+      status: {
+        code: 304,
+        message: error,
+      },
+    });
+  }
+}
+
+async function getMonthlyVideos(req, res) {
+  try {
+    const { year, month } = req.params;
+    const formattedMonth = new Date(`${month} 1, ${year}`).toLocaleString(
+      "default",
+      { month: "long" }
+    );
+    const data = await Ted.find();
+
+    const filteredData = data.filter((item) => {
+      const [itemMonth, itemYear] = item.date.split(" ");
+      return itemMonth === formattedMonth && itemYear === year;
+    });
+
+    const values = filteredData.map((item) => item.views);
+    const labels = filteredData.map((item) => item.title);
+    const id = filteredData.map((item) => item.id);
+
+    res.status(200).json({
+      status: {
+        code: 200,
+        message: "Success",
+      },
+      data: {
+        values,
+        labels,
+        id,
+      },
+    });
+  } catch (error) {
+    res.status(304).json({
+      status: {
+        code: 304,
+        message: error,
+      },
+    });
+  }
+}
+
+async function getVideoDetail(req, res) {
+  try {
+    const { id } = req.params;
+    const data = await Ted.findById(id);
+    if (!data) {
+      return res.status(404).json({
+        status: {
+          code: 404,
+          message: `Cannot find any video with id ${id}`,
+        },
+      });
+    }
+
+    res.status(200).json({
+      status: {
+        code: 200,
+        message: "Success",
+      },
+      data: data,
     });
   } catch (error) {
     res.status(304).json({

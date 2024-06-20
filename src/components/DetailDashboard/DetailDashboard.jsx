@@ -9,9 +9,7 @@ const DetailDashboard = () => {
   const params = useParams();
   const [selectedMonth, setSelectedMonth] = useState("January");
   const [selectedYear, setSelectedYear] = useState(params.id);
-  const [selectedVideoId, setSelectedVideoId] = useState(
-    "66649bf39bcce2aae40635c5"
-  );
+  const [selectedVideoId, setSelectedVideoId] = useState("");
 
   const handleBarPlotClick = (month, year) => {
     setSelectedMonth(month);

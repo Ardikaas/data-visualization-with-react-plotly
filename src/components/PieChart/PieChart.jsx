@@ -3,13 +3,14 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import "./PieChart.style.css";
 
 const PieChart = (props) => {
+  const { year, month, onPieClick } = props;
   const [pieData, setPieData] = useState({});
   const previousDataRef = useRef({});
 
   const fetchData = useCallback(async () => {
     try {
       const response = await fetch(
-        `http://localhost:8080/monthlyvideos/${props.year}/${props.month}`
+        `http://localhost:8080/monthlyvideos/${year}/${month}`
       );
       if (!response.ok) {
         throw new Error("Failed to fetch data");
@@ -21,11 +22,14 @@ const PieChart = (props) => {
       if (isDifferent) {
         setPieData(data.data);
         previousDataRef.current = data.data;
+        if (onPieClick && data.data.id && data.data.id.length > 0) {
+          onPieClick(data.data.id[0]);
+        }
       }
     } catch (error) {
       console.log("Error fetching data:", error);
     }
-  }, [props.year, props.month]);
+  }, [year, month, onPieClick]);
 
   useEffect(() => {
     fetchData();
@@ -64,8 +68,11 @@ const PieChart = (props) => {
               labels: (pieData.labels || []).map((label) =>
                 truncateLabel(label)
               ),
+              textinfo: "none",
               hoverinfo: "label+percent",
               hole: 0.55,
+              textposition: "inside",
+              texttemplate: "%{label}<br>%{percent}",
               type: "pie",
               ids: pieData.id || [],
             },

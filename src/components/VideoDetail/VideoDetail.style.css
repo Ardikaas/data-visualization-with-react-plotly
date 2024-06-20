@@ -24,8 +24,9 @@
 }
 
 .videodetail-thumbnail img{
-  width: auto;
+  width: 265px;
   height: 150px;
+  object-fit: cover;
   border: 1px solid rgba(117, 117, 117, 20%);
   border-radius: 5px;
 }

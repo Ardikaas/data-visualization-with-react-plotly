@@ -15,6 +15,7 @@ const getYoutubeThumbnail = (videoUrl) => {
 
 const TEDThumbnail = ({ videoUrl }) => {
   const [thumbnailUrl, setThumbnailUrl] = useState("");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchThumbnail = async () => {
@@ -23,6 +24,7 @@ const TEDThumbnail = ({ videoUrl }) => {
           const youtubeThumbnailUrl = getYoutubeThumbnail(videoUrl);
           if (youtubeThumbnailUrl) {
             setThumbnailUrl(youtubeThumbnailUrl);
+            setLoading(false);
             return;
           }
         }
@@ -37,16 +39,26 @@ const TEDThumbnail = ({ videoUrl }) => {
         } else {
           setThumbnailUrl(defaultThumbnail);
         }
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching thumbnail:", error);
+        setLoading(false);
       }
     };
 
     fetchThumbnail();
   }, [videoUrl]);
 
+  if (loading) {
+    return (
+      <div>
+        <img src={defaultThumbnail} alt="thumbnail" />
+      </div>
+    );
+  }
+
   return (
-    <div className="mostviewcard-img">
+    <div>
       <img src={thumbnailUrl} alt="thumbnail" />
     </div>
   );
@@ -75,7 +87,7 @@ const VideoDetail = (props) => {
   }, [props.id]);
 
   if (!videoData) {
-    return <div>Loading...</div>; // Menampilkan pesan loading selama fetch data
+    return <img src={defaultThumbnail} alt="thumbnail" />; // Menampilkan pesan loading selama fetch data
   }
 
   return (

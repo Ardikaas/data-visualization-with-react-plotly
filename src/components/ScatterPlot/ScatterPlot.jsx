@@ -11,7 +11,7 @@ const ScatterPlot = () => {
     try {
       const response = await fetch("http://localhost:8080/totalviews");
       if (!response.ok) {
-        throw new Error("Filed to fetch data");
+        throw new Error("Failed to fetch data");
       }
       const data = await response.json();
       setPlotData(data.data);

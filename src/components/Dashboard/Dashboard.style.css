@@ -40,3 +40,10 @@
   align-items: center;
   gap: 25px;
 }
+
+.analytic-card{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding-top: 15px;
+}

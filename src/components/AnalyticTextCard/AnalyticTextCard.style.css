@@ -1,0 +1,33 @@
+.analyticcarrdtext-continer{
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  border: 2px solid rgba(117, 117, 117, 20%);
+  background-color: #ffffff;
+  border-radius: 5px;
+  padding: 12px 10px;
+  gap: 5px;
+}
+
+.analyticcarrdtext-continer h5{
+  margin: 0;
+  font-weight: 400;
+}
+
+.analyticcarrdtext-value{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 7px;
+}
+
+.analyticcarrdtext-value h3{
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 900;
+  color: #e62b1e;
+}
+.analyticcarrdtext-value img{
+  height: auto;
+  width: 15px;
+}

@@ -11,6 +11,7 @@ const TedController = {
   getMonthlyLikes,
   getMonthlyVideos,
   getVideoDetail,
+  getAnalyticText,
 };
 
 async function getAllData(req, res) {
@@ -330,6 +331,66 @@ async function getVideoDetail(req, res) {
     res.status(304).json({
       status: {
         code: 304,
+        message: error,
+      },
+    });
+  }
+}
+
+async function getAnalyticText(req, res) {
+  try {
+    const data = await Ted.find();
+    const currentyear = new Date().getFullYear();
+    let overallview = 0;
+    let overalllike = 0;
+    let currentview = 0;
+    let currentlike = 0;
+
+    data.forEach((item) => {
+      overallview += item.views;
+      overalllike += item.likes;
+      const year = new Date(item.date).getFullYear();
+      if (year === currentyear) {
+        currentview += item.views;
+        currentlike += item.likes;
+      }
+    });
+
+    const randomViewPredict =
+      Math.floor(Math.random() * (1000000 - 1000 + 1)) + 1000;
+    const randomLikePredict =
+      Math.floor(Math.random() * (50000 - 100 + 1)) + 100;
+
+    function formatNumber(number) {
+      if (number >= 1000000000) {
+        return (number / 1000000000).toFixed(1) + "b";
+      } else if (number >= 1000000) {
+        return (number / 1000000).toFixed(1) + "m";
+      } else if (number >= 1000) {
+        return (number / 1000).toFixed(1) + "k";
+      } else {
+        return number.toString();
+      }
+    }
+
+    res.status(200).json({
+      status: {
+        code: 200,
+        message: "Success",
+      },
+      data: {
+        overallview: formatNumber(overallview),
+        overalllike: formatNumber(overalllike),
+        currentview: formatNumber(currentview),
+        currentlike: formatNumber(currentlike),
+        viewpredict: formatNumber(randomViewPredict),
+        likepredict: formatNumber(randomLikePredict),
+      },
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: {
+        code: 500,
         message: error,
       },
     });

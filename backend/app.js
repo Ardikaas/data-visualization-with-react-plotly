@@ -54,6 +54,10 @@ app.get("/videodetail/:id", async (req, res) => {
   TedController.getVideoDetail(req, res);
 });
 
+app.get("/analytictext", async (req, res) => {
+  TedController.getAnalyticText(req, res);
+});
+
 app.post("/input", async (req, res) => {
   TedController.createData(req, res);
 });
